@@ -4,9 +4,9 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
-RUN apt-get update && apt-get install git -y && rm -rf /var/cache/apt
+RUN apt-get update && apt-get install git php7.3-zip -y && rm -rf /var/cache/apt
 
 ADD ./templates/php.ini  /usr/local/etc/php/php.ini
-ADD ./templates/docker-php-ext-xdebug.ini  /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+ADD ./templates/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 CMD ["php", "-a"]
